@@ -32,15 +32,15 @@ select,input[type=search]{border:1px solid var(--line);border-radius:8px;padding
 <div class="app"><main class="main">
 <div class="top"><div><h1>Frontier AI Dependency Explorer</h1><p class="sub">How frontier AI models are governed today—and where countries, institutions, firms, and infrastructure providers hold power over their development and deployment.</p></div><div class="metric"><b id="visibleCount">0</b>visible nodes</div></div>
 <div class="navtabs" role="tablist" aria-label="Resource views">
-<button class="navtab on" data-view="overviewview" role="tab" aria-selected="true">Overview</button>
-<button class="navtab" data-view="mapview" role="tab" aria-selected="false">Geopolitics</button>
+<button class="navtab" data-view="overviewview" role="tab" aria-selected="false">Overview</button>
+<button class="navtab on" data-view="mapview" role="tab" aria-selected="true">Geopolitics</button>
 <button class="navtab" data-view="worldview" role="tab" aria-selected="false">Map view</button>
 <button class="navtab" data-view="networkview" role="tab" aria-selected="false">Network diagram</button>
 <button class="navtab" data-view="chainview" role="tab" aria-selected="false">Value chain</button>
 <button class="navtab" data-view="refsview" role="tab" aria-selected="false">References</button>
 </div>
 
-<div class="view" id="overviewview">
+<div class="view hide" id="overviewview">
 <div class="view-head"><div><h2>How frontier AI is governed—and who holds power</h2><p>A simplified system view. The model is at the center. Infrastructure and country capabilities enable it from below; institutions, laws, security bodies, and evaluators constrain it from above. Power comes from controlling something the model developer cannot easily replace.</p></div><div class="view-note">Start here · click any card to inspect evidence</div></div>
 <div class="overview-kpis"><div class="overview-kpi"><b>4</b><span>Governance mechanisms</span></div><div class="overview-kpi"><b>6</b><span>Critical dependency layers</span></div><div class="overview-kpi"><b>19</b><span>Middle-power countries</span></div><div class="overview-kpi"><b>8</b><span>Frontier / adjacent labs</span></div></div>
 <div class="canvas-card"><svg id="overviewmap" class="overview-svg" viewBox="0 0 1400 720" role="img" aria-label="Simplified frontier AI governance and power map"></svg></div>
@@ -48,7 +48,7 @@ select,input[type=search]{border:1px solid var(--line);border-radius:8px;padding
 <div class="overview-note"><b>Core insight:</b> frontier labs remain concentrated in the United States and China, but the system they depend on is not. The governance opportunity lies in connecting distributed chokepoints and political authority into coordinated conditions on access, deployment, and safety.</div>
 </div>
 
-<div class="view hide" id="mapview">
+<div class="view" id="mapview">
 <div class="toolbar">
 <span class="label">Show</span><button class="chip on" data-kind="country">Countries</button><button class="chip on" data-kind="resource">Resources</button><button class="chip on" data-kind="lab">Frontier labs</button><button class="chip on" data-kind="institution">Institutions & forums</button><button class="chip on" data-kind="policy">Agreements & policies</button>
 <span class="label">Region</span><select id="region"><option>All</option></select>
@@ -600,6 +600,6 @@ function drawOverview(){
  document.getElementById('visibleCount').textContent=nodes.length;
 }
 function renderView(id){if(id==='overviewview')drawOverview();else if(id==='mapview')draw();else if(id==='worldview')drawWorld();else if(id==='networkview')drawNetwork();else if(id==='chainview')drawChain();else renderConnections()}
-document.querySelectorAll('.navtab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.navtab').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-selected','false')});document.querySelectorAll('.view').forEach(v=>v.classList.add('hide'));b.classList.add('on');b.setAttribute('aria-selected','true');document.getElementById(b.dataset.view).classList.remove('hide');renderView(b.dataset.view)});renderConnections();drawOverview();
+document.querySelectorAll('.navtab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.navtab').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-selected','false')});document.querySelectorAll('.view').forEach(v=>v.classList.add('hide'));b.classList.add('on');b.setAttribute('aria-selected','true');document.getElementById(b.dataset.view).classList.remove('hide');renderView(b.dataset.view)});renderConnections();draw();
 
 </script></body></html>
